@@ -18,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * - [x] equalsの一般化
  * - [ ] timesの一般化
  * - [ ] Franc と Dollarを比較する
+ * - [ ] 通貨の概念
  */
 public class MoneyTest {
     @Test
@@ -32,6 +33,7 @@ public class MoneyTest {
         assertFalse(new Dollar(5).equals(new Dollar(6)));
         assertTrue(new Franc(5).equals(new Franc(5)));
         assertFalse(new Franc(5).equals(new Franc(6)));
+        assertFalse(new Franc(5).equals(new Dollar(5)));
     }
 
     @Test

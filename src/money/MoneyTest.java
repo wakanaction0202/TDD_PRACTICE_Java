@@ -5,21 +5,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * - [ ] $5 + 10chf = $10 (レートが2:1の場合)
- * - [x] $5 * 2 = 10
- * - [x] amount をprivateにする
- * - [x] Dollarの副作用どうする？
+ * - [ ] $5 + $5 = $10
  * - [ ] Moneyの丸め処理どうする？
- * - [x] equals()
  * - [ ] hashCode()
  * - [ ] nullとの比較
  * - [ ] 他のオブジェクトとの等価性比較
- * - [x] 5CHF * 2 = 10CHF
- * - [x] DollarとFrancの重複
- * - [x] equalsの一般化
- * - [x] timesの一般化
- * - [x] Franc と Dollarを比較する
- * - [x] 通貨の概念
- * - [x] testFrancMultiplicationを削除する？
  */
 public class MoneyTest {
     @Test
@@ -39,5 +29,14 @@ public class MoneyTest {
     public void testCurrency() {
         assertEquals("USD", Money.dollar(1).currency());
         assertEquals("CHF", Money.franc(1).currency());
+    }
+
+    @Test
+    public void testSimpleAddition() {
+        Money five = Money.dollar(5);
+        Expression sum = five.plus(five);
+        Bank bank = new Bank();
+        Money reduced = bank.reduce(sum, "USD");
+        assertEquals(Money.dollar(10), reduced);
     }
 }
